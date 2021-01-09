@@ -1,4 +1,4 @@
-USE employee_tracker
+USE employeeDB;
 
 INSERT INTO departments (name)
 VALUES 
@@ -9,24 +9,23 @@ VALUES
 ('Logistics'),
 ('Quality Assurance'),
 ('Customer Relations'),
-('Supplier Relations'),
-);
+('Supplier Relations');
 
-INSERT INTO roles (title, salary, department_id)
+INSERT INTO roles (title, salary, departmentID)
 VALUES 
 ('Regional Manager', 120000, 1),
 ('Sales Manager', 105000, 2),
-('Sales Rep', 95000, 2)
+('Sales Rep', 95000, 2),
 ('Accounting Manager', 105000, 3),
 ('Accountant', 95000, 3),
 ('HR Manager', 85000, 4),
 ('Shipping Manager', 80000, 5),
 ('Quality Assurance', 80000, 6),
 ('Customer Relations', 80000, 7),
-('Receptionist', 60000, 7)
+('Receptionist', 60000, 7),
 ('Supplier Relations', 80000, 8);
 
-INSERT INTO employees (first_name, last_name, role_id)
+INSERT INTO employees (firstName, lastName, roleID)
 VALUES 
 ('Michael', 'Scott', 1),
 ('Jim', 'Halpert', 2),
@@ -34,7 +33,7 @@ VALUES
 ('Toby', 'Flenderson', 6),
 ('Darryl', 'Philbin', 7);
 
-INSERT INTO employees (first_name, last_name, role_id, manager_id)
+INSERT INTO employees (firstName, lastName, roleID, managerID)
 VALUES
 ('Pam', 'Beesly', 10, 1),
 ('Dwight', 'Schrute', 3, 2),

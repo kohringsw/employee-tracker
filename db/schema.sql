@@ -1,28 +1,31 @@
-DROP DATABASE if exists employee_tracker
-CREATE DATABASE employee_tracker
+DROP DATABASE if exists employeeDB;
+CREATE DATABASE employeeDB;
 
-USE employee_tracker
+USE employeeDB;
 
-DROP TABLE IF EXISTS departments;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS employees;
+DROP TABLE if exists departments;
+DROP TABLE if exists roles;
+DROP TABLE if exists employees;
 
 CREATE TABLE departments (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR(30) NOT NULL
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE roles (
-    id INTEGER PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL NOT NULL,
-    department_id INTEGER UNSIGNED NOT NULL
+    salary INT NOT NULL,
+    departmentID INT NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE employees (
-    id INTEGER PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    role_id INTEGER UNSIGNED NOT NULL,
-    manager_id INTEGER UNSIGNED 
+    id INT NOT NULL AUTO_INCREMENT,
+    firstName VARCHAR(30) NOT NULL,
+    lastName VARCHAR(30) NOT NULL,
+    roleID INT NOT NULL,
+    managerID INT,
+    PRIMARY KEY (id)
 );

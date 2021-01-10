@@ -255,10 +255,81 @@ async function addEmployee() {
   console.log("New employee was added!");
   console.log("-----------------------");
   viewEmployees();
-};
+}
 
 // delete department from departments table
+async function deleteDepartment() {
+  const sql = await queryAsync("SELECT * FROM departments");
+  const answer = await inquirer.prompt({
+    name: "deleteDepartment",
+    type: "list",
+    message: "Which department would you like to delete?",
+    choices: () => {
+      const departments = [];
+      for (let i of sql) {
+        departments.push(i.name);
+      }
+      return departments;
+    },
+  });
+
+  await queryAsync("DELETE FROM departments WHERE ?", {
+    name: answer.deleteDepartment,
+  });
+  console.log("-----------------------");
+  console.log("Department was deleted!");
+  console.log("-----------------------");
+  viewDepartments();
+}
 
 // delete role from roles table
+async function deleteRole() {
+  const sql = await queryAsync("SELECT * FROM roles");
+  const answer = await inquirer.prompt({
+    name: "deleteRole",
+    type: "list",
+    message: "Which role would you like to delete?",
+    choices: () => {
+      const roles = [];
+      for (let i of sql) {
+        roles.push(i.title);
+      }
+      return roles;
+    },
+  });
+
+  await queryAsync("DELETE FROM roles WHERE ?", { title: answer.deleteRole });
+  console.log("-----------------");
+  console.log("Role was deleted!");
+  console.log("-----------------");
+  viewRoles();
+}
 
 // delete employee from employees table
+async function deleteEmployee() {
+  const sql = await queryAsync("SELECT employees.id, CONCAT(employees.firstName, ' ', employees.lastName) AS employeeName, employees.roleID, employees.managerID FROM employees");
+  const answer = await inquirer.prompt({
+    name: "deleteEmployee",
+    type: "list",
+    message: "Which employee would you like to delete?",
+    choices: () => {
+      const employees = [];
+      for (let i of sql) {
+        employees.push(i.employeeName);
+      }
+      return employees;
+    },
+  });
+  let deleteID;
+  for (let i of sql) {
+    if (i.employeeName === answer.deleteEmployee) {
+      deleteID = i.id;
+    }
+  }
+
+  await queryAsync("DELETE FROM employees WHERE ?", { id: deleteID });
+  console.log("---------------------");
+  console.log("Employee was deleted!");
+  console.log("---------------------");
+  viewEmployees();
+}

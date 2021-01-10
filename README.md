@@ -36,11 +36,11 @@ Required Installation
 ![dotenv PASSWORD entry](assets/images/password-dotenv.png)
 
 **2. Next, to execute the functionality of this application enter the following in your CLI:**
-- mysql -u root -p < db/schema.sql (then enter your password)
+- **mysql -u root -p < db/schema.sql** (then enter your password)
   - *this creates the employee tracker database and tables*
-- mysql -u root -p < db/seeds.sql (then enter your password)
+- **mysql -u root -p < db/seeds.sql** (then enter your password)
   - *this populates the database tables with the departments, roles and employees*
-- execute the application with node server
+- execute the application with **node server**
 
 ## Contributors
 Shelby Kohring

@@ -31,15 +31,15 @@ Required Installation
 - npm install dotenv
 
 ## Usage
-1. First enter your MySQL password in the .env file:
+**1. First enter your MySQL password in the .env file:**
 
 ![dotenv PASSWORD entry](assets/images/password-dotenv.png)
 
-2. Next, to execute the functionality of this application enter the following in your CLI:
-- mysql -u root -p < db/schema.sql and enter your password
-  - *(this creates the employee tracker database and tables)*
-- mysql -u root -p < db/seeds.sql and enter your password
-  - *(this populates the database tables with the departments, roles and employees)*
+**2. Next, to execute the functionality of this application enter the following in your CLI:**
+- mysql -u root -p < db/schema.sql (then enter your password)
+  - *this creates the employee tracker database and tables*
+- mysql -u root -p < db/seeds.sql (then enter your password)
+  - *this populates the database tables with the departments, roles and employees*
 - execute the application with node server
 
 ## Contributors

@@ -128,10 +128,134 @@ async function viewEmployees() {
 }
 
 // add new department to departments table
+async function addDepartment() {
+  const answer = await inquirer.prompt({
+    name: "newDepartment",
+    type: "input",
+    message: "What is the name of the new department?",
+  });
+  await queryAsync("INSERT INTO departments SET ?", {
+    name: answer.newDepartment,
+  });
+  console.log("-------------------------");
+  console.log("New department was added!");
+  console.log("-------------------------");
+  viewDepartments();
+}
 
 // add new role to roles table
+async function addRole() {
+  const sql = await queryAsync("SELECT * FROM departments");
+  const answer = await inquirer.prompt([
+    {
+      name: "newRole",
+      type: "input",
+      message: "What is the new role you want to add?",
+    },
+    {
+      name: "salary",
+      type: "input",
+      message: "What is the salary for the new role?",
+      validate: (value) => {
+        if (isNaN(value) === false) return true;
+        return false;
+      },
+    },
+    {
+      name: "department",
+      type: "list",
+      message: "What department is the new role in?",
+      choices: () => {
+        const departments = [];
+        for (let i of sql) {
+          departments.push(i.name);
+        }
+        return departments;
+      },
+    },
+  ]);
+  let departmentID;
+  for (let i of sql) {
+    if (i.name === answer.department) {
+      departmentID = i.id;
+    }
+  }
+  await queryAsync("INSERT INTO roles SET ?", {
+    title: answer.newRole,
+    salary: answer.salary,
+    departmentID: departmentID,
+  });
+  console.log("-------------------");
+  console.log("New role was added!");
+  console.log("-------------------");
+  viewRoles();
+}
 
 // add new employee to employees table
+async function addEmployee() {
+  const sqlRole = await queryAsync("SELECT * FROM roles");
+  const answerRole = await inquirer.prompt([
+    {
+      name: "firstName",
+      type: "input",
+      message: "What is the new employee's first name?",
+    },
+    {
+      name: "lastName",
+      type: "input",
+      message: "What is the new employee's last name?",
+    },
+    {
+      name: "role",
+      type: "list",
+      message: "What is the new employee's role?",
+      choices: () => {
+        const roles = [];
+        for (let i of sqlRole) {
+          roles.push(i.title);
+        }
+        return roles;
+      },
+    },
+  ]);
+  const sqlEmployee = await queryAsync(
+    "SELECT employees.id, CONCAT(employees.firstName, ' ', employees.lastName) AS employeeName, employees.roleID, employees.managerID FROM employees"
+  );
+  const answerEmployee = await inquirer.prompt({
+    name: "employee",
+    type: "list",
+    message: "Who is the new employee's manager?",
+    choices: () => {
+      const names = ["None"];
+      for (let i of sqlEmployee) {
+        names.push(i.employeeName);
+      }
+      return names;
+    },
+  });
+  let roleID;
+  for (let i of sqlRole) {
+    if (i.title === answerRole.role) {
+      roleID = i.id;
+    }
+  }
+  let managerID;
+  for (let i of sqlEmployee) {
+    if (i.employeeName === answerEmployee.employee) {
+      managerID = i.id;
+    }
+  }
+  await queryAsync("INSERT INTO employees SET ?", {
+    firstName: answerRole.firstName,
+    lastName: answerRole.lastName,
+    roleID: roleID,
+    managerID: managerID,
+  });
+  console.log("-----------------------");
+  console.log("New employee was added!");
+  console.log("-----------------------");
+  viewEmployees();
+};
 
 // delete department from departments table
 

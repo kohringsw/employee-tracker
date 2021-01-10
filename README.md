@@ -24,23 +24,23 @@ This application also allows the user to add a department, role or employee, as 
 - [Questions](#questions)
 
 ## Installation Instructions
-- Required Installation
-  - npm install
-  - npm install inquirer
-  - npm install console.table --save
-  - npm install dotenv
+Required Installation
+- npm install
+- npm install inquirer
+- npm install console.table --save
+- npm install dotenv
 
 ## Usage
-### First enter your MySQL password in the .env file:
+1. First enter your MySQL password in the .env file:
 
-[dotenv PASSWORD entry](assets/images/password-dotenv.png)
+![dotenv PASSWORD entry](assets/images/password-dotenv.png)
 
-### Next, to execute the functionality of this application enter the following in your CLI:
-1. mysql -u root -p < db/schema.sql and enter your password
-  - (this creates the employee tracker database and tables)
-2. mysql -u root -p < db/seeds.sql and enter your password
-  - (this populates the database tables with the departments, roles and employees)
-3. execute the application with node server
+2. Next, to execute the functionality of this application enter the following in your CLI:
+- mysql -u root -p < db/schema.sql and enter your password
+  - *(this creates the employee tracker database and tables)*
+- mysql -u root -p < db/seeds.sql and enter your password
+  - *(this populates the database tables with the departments, roles and employees)*
+- execute the application with node server
 
 ## Contributors
 Shelby Kohring

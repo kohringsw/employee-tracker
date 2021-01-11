@@ -31,7 +31,7 @@ Required Installation
 - npm install dotenv
 
 ## Usage
-**1. First enter your MySQL password in the .env file:**
+**1. First enter your MySQL password between the " " on line 11 (password: " ")
 
 ![dotenv PASSWORD entry](assets/images/password-dotenv.png)
 

@@ -31,9 +31,7 @@ Required Installation
 - npm install dotenv
 
 ## Usage
-**1. First enter your MySQL password between the " " on line 11 (password: " ")
-
-![dotenv PASSWORD entry](assets/images/password-dotenv.png)
+**1. First enter your MySQL password between the " " on line 11 (password: " ")**
 
 **2. Next, to execute the functionality of this application enter the following in your CLI:**
 - **mysql -u root -p < db/schema.sql** (then enter your password)
